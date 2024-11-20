@@ -1,0 +1,83 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+   
+    justify-content: center;
+    align-items: center;
+    background-image: url("./images/manga-one-piece-wallpaper-thumb.jpg"); /* Update with the correct path */
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-position: center center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents the background image from repeating */
+  
+    
+}
+
+/* By setting display: flex to the body and margin: auto to the .memory-game container,
+ it will be centered both vertically and horizontally. */
+.memory-game {
+    width: 640px;
+    height: 640px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    perspective: 1000px;
+
+    /* position: relative; /* Added to create a containing block for absolutely positioned elements(video) */
+    /* overflow: hidden; Ensure the video doesn't overflow outside the section */ 
+}
+
+
+/* #background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the video covers the entire section 
+    z-index: -1;  Places the video behind the cards 
+} */
+
+
+
+
+/* Each card width and height is calculated with calc() CSS function. 
+Let’s make three rows, four card each by setting width to 25% and height to 33.333% minus 10px from margin. */
+.memory-card {
+    width: calc(25% - 10px);
+    height: calc(33.333% - 10px);
+    margin: 5px;
+    position: relative;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, .3);
+    transform: scale(1);
+    transform-style: preserve-3d;
+    transition: transform .5s;
+}
+.memory-card:active{
+    transform: scale(0.97);
+    transition: transform .2s;
+}
+.memory-card.flip{
+    transform: rotateY(180deg);
+}
+.front-side,.back-side {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    position: absolute;
+    border-radius: 5px;
+    background:linear-gradient(135deg, #6b6fd8 10%, #e81741);
+    backface-visibility: hidden;
+    /* both .front-face and .back-face are stacked up onto each other, because they are absolutely positioned. 
+    Every element has a back face, which is a mirror image of its front face.
+     The property backface-visibility defaults to visible */
+}
+.front-side{
+    transform: rotateY(180deg);
+    /* background: #5BC0EB; Golden Yellow */
+}
